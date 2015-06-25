@@ -11,8 +11,8 @@
 // - If the user is not found, "redirect" to a special NotFound component
 ////////////////////////////////////////////////////////////////////////////////
 var React = require('react');
-var Router = require('react-router');
-var { Route, Link, State, RouteHandler } = Router;
+var { Router, Route, Link, Redirect } = require('react-router');
+var HashHistory = require('react-router/lib/HashHistory');
 var Gravatar = require('./components/Gravatar');
 
 var USERS = [
@@ -33,7 +33,7 @@ var App = React.createClass({
     return (
       <div>
         <h1>People Viewer</h1>
-        <RouteHandler/>
+        {this.props.children}
       </div>
     )
   }
@@ -44,7 +44,7 @@ var Home = React.createClass({
     var items = USERS.map(function (user) {
       return (
         <li key={user.email}>
-          <Link to="profile" params={{userID: user.id}}>{user.name}</Link>
+          <Link to={`/profile/${user.id}`}>{user.name}</Link>
         </li>
       );
     });
@@ -56,9 +56,8 @@ var Home = React.createClass({
 });
 
 var Profile = React.createClass({
-  mixins: [ State ],
   render: function () {
-    var user = getUserByID(this.getParams().userID);
+    var user = getUserByID(this.props.params.userID);
 
     if (user == null)
       return <p>Cannot find user with id {this.getParams().userID}</p>;
@@ -71,13 +70,20 @@ var Profile = React.createClass({
   }
 });
 
-var routes = (
-  <Route handler={App}>
-    <Route name="home" path="/" handler={Home}/>
-    <Route name="profile" path="/users/:userID" handler={Profile}/>
-  </Route>
-);
-
-Router.run(routes, function (Handler, state) {
-  React.render(<Handler/>, document.getElementById('app'));
+var NoMatch = React.createClass({
+  render: function () {
+    return <p>I don’t understand that route</p>;
+  }
 });
+
+React.render((
+  <Router history={new HashHistory()}>
+    <Route component={App}>
+      <Route path="/" component={Home}/>
+      <Route path="/profile/:userID" component={Profile}/>
+    </Route>
+    <Redirect from="/users/:userID" to="/profile/:userID"/>
+    <Route path="*" component={NoMatch}/>
+  </Router>
+), document.getElementById('app'));
+
