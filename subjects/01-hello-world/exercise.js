@@ -1,15 +1,12 @@
-////////////////////////////////////////////////////////////////////////////////
-// Exercise:
-//
-// - change the contents of the render function and save the file
-// - see the updates automatically in your browser without refreshing!
-////////////////////////////////////////////////////////////////////////////////
+
+
 var React = require('react');
 
-var App = React.createClass({
-  render: function () {
-    return <div>Hello World</div>;
-  }
-});
+var { div, h1, p } = React.DOM;
+var element = div({ className: 'App' },
+                   h1(null, 'Hello!'),
+                   p(null, "Isn't this easy?")
+                 );
+React.render(element, document.body);
 
-React.render(<App/>, document.getElementById('app'));
+

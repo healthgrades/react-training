@@ -155,6 +155,10 @@ var double = (adder, value) => adder(value);
 Pure functions are incredibly versatile. They are completely isolated
 from the context in which they are used.
 
+
+
+
+
 Okay, now some React:
 
 React components are literally functions that return a
