@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Jasmine Spec Runner v2.3.4</title>
+
+	<link rel="shortcut icon" type="image/png" href="/public/vendor/jasmine/lib/jasmine-2.3.4/jasmine_favicon.png">
+	<link rel="stylesheet" href="/public/vendor/jasmine/lib/jasmine-2.3.4/jasmine.css">
+
+	<script src="/public/vendor/jasmine/lib/jasmine-2.3.4/jasmine.js"></script>
+	<script src="/public/vendor/jasmine/lib/jasmine-2.3.4/jasmine-html.js"></script>
+	<script src="/public/vendor/jasmine/lib/jasmine-2.3.4/boot.js"></script>
+	<script src="/public/vendor/sinon/sinon-1.14.1.js"></script>
+
+	<script type="text/javascript"> 
+		window.shouldRefresh = true;
+		window.refreshCheckCount = 0;
+
+		//refresh page when bundle name changes
+		(function () {
+			var bundleName = "",
+                intervalId = 0,
+                maxRefreshCheckAttempts = 4000;
+
+			intervalId = setInterval(function () {
+				if (!shouldRefresh) {
+					return;
+				}
+
+				if (refreshCheckCount > maxRefreshCheckAttempts) {
+					console.log([
+                        'more than',
+                        maxRefreshCheckAttempts,
+                        'refresh attempts.',
+                        'Stopping auto refresh. Refresh manually to resume.'
+					].join(' '));
+
+					clearInterval(intervalId);
+				}
+
+				var p = jQuery.getJSON('/public/bundles/stats.js').promise();
+
+				p.done(function (x) {
+					var newBundleName = x.specsjs;
+
+					if (bundleName === "") {
+						bundleName = newBundleName;
+						return;
+					}
+
+					if (bundleName !== newBundleName) {
+						console.log('refresh');
+						location.reload();
+					} else {
+						window.refreshCheckCount++;
+					}
+				});
+
+			}, 300);
+		}());
+	</script>
+
+	<script type="text/javascript" src="/public/bundles/specs.bundle.js"></script>
+</head>
+
+<body>
+</body>
+</html>

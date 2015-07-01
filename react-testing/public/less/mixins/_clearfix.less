@@ -1,0 +1,11 @@
+// Clearfix hack for floats
+// -------------------------------------------------
+.clearfix() {
+  &:before, &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}

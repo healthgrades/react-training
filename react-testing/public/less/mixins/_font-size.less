@@ -1,0 +1,8 @@
+// Fallback for REMs in IE8
+@base-size: 16;
+.font-size(@sizeValue) {
+  @pxValue: unit(@base-size * @sizeValue);
+  @remValue: unit(@sizeValue);
+  font-size: ~"@{pxValue}px";
+  font-size: ~"@{remValue}rem";
+}

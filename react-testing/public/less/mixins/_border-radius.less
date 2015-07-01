@@ -1,0 +1,29 @@
+// Border radius mixins
+// -------------------------------------------------
+
+// Known issues (as of 11/20/14):
+// Safari does not apply border-radius correctly to image borders: http://stackoverflow.com/q/17202128
+// Android Browser 2.3 does not support % value for border-radius.
+// Border-radius does not work on fieldset elements in IE9.
+// The stock browser on the Samsung Galaxy S4 with Android 4.2 does not support
+//   the border-radius shorthand property but does support the long-hand properties
+//   for each corner like border-top-left-radius.
+
+// Single side border-radius
+// -------------------------------------------------
+.rounded-top(@radius: @border-radius-base) {
+  border-top-right-radius: @radius;
+  border-top-left-radius: @radius;
+}
+.rounded-right(@radius: @border-radius-base) {
+  border-bottom-right-radius: @radius;
+  border-top-right-radius: @radius;
+}
+.rounded-bottom(@radius: @border-radius-base) {
+  border-bottom-right-radius: @radius;
+  border-bottom-left-radius: @radius;
+}
+.rounded-left(@radius: @border-radius-base) {
+  border-bottom-left-radius: @radius;
+  border-top-left-radius: @radius;
+}

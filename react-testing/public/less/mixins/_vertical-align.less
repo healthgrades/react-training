@@ -1,0 +1,15 @@
+// Vertically align any element
+// -------------------------------------------------
+.vertical-align() {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+// Vertically align text within an element of fixed height
+// --------------------------------------------------------
+.vertical-align-text(@height: auto) {
+  display: table-cell;
+  height: @height;
+  vertical-align: middle;
+}

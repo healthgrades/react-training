@@ -1,0 +1,216 @@
+﻿// HG Variables
+// ---------------------------------------------------
+
+@base-size:         16;
+@font-path:         "fonts";
+@img-path:          "../images";
+
+// TODO: Pathing may need to be made global -- look into this
+
+// ---------------------------------------------------
+// Colors
+// ---------------------------------------------------
+
+// Neutrals
+
+@gray:            #999;
+@gray-faint:      lighten(@gray, 35.33%); // #f3f3f3
+@gray-lightest:   lighten(@gray, 32%);    // #ebebeb
+@gray-lighter:    lighten(@gray, 23%);    // #d4d4d4
+@gray-light:      lighten(@gray, 11%);    // #b5b5b5
+@gray-dark:       darken(@gray, 10%);     // #808080
+@gray-darker:     darken(@gray, 15%);     // #737373
+@gray-darkest:    darken(@gray, 20%);     // #666
+
+// Top colors
+
+@salmon:          #df907a;
+@darksalmon:      #c07560;
+
+@teal:            #649aa6;
+@darkteal:        #288d9b;
+@lightteal:       #9dc8ce;
+@lightteal2:      #aed4da;
+@faintteal:       #eefdff;
+
+@blue:            #3379a9;
+@blue-2:          #6480a6;
+@lightblue:       #c0e5f0;
+@lightbluebg:     #dcf2f9;
+@lightbluebg2:    #e1f4fa;
+@darkblue:        #036;
+//#add3da -- candidate for light blue
+
+// Secondary colors
+
+@green:           #64a693;
+@gold:            #cbba5c;
+@magenta:         #ab5e7e;
+@orange:          #f90;
+@red:             #ef464b;
+@peach:           #dfb17a;
+@purple:          #6c678c;
+@yellow:          #ffcb05;
+@seafoam:         #6cbcb3;
+@green-gray:      #859993;
+
+
+// Shades
+// TODO: find out what these really are
+
+@blue-dark:       darken(@blue, 10%);
+@blue-darkest:    darken(@blue, 20%);
+
+// Branding
+
+@brand-color-primary:              @salmon;
+@brand-color-secondary:            @teal;
+@brand-color-tertiary:             darken(@blue, 20%);
+
+@brand-color-patient-experience:   @magenta;
+@brand-color-patient-satisfaction: @gold;
+@brand-color-appointments-offices: @teal;
+@brand-color-hospital-quality:     @purple;
+
+// CTAs
+
+@cta-color-primary:                @brand-color-primary;
+@cta-color-secondary:              @brand-color-secondary;
+@cta-color-tertiary:               @brand-color-tertiary;
+
+
+// ---------------------------------------------------
+// Scaffolding
+// ---------------------------------------------------
+
+
+// Fonts
+// ---------------------------------------------------
+
+@font-family-opensans:  'Open Sans', 'OpenSans', 'Arial', 'Helvetica', sans-serif;
+@font-family-raleway:   'Raleway', 'Arial', 'Helvetica', sans-serif;
+
+@font-family-primary:   @font-family-opensans;
+@font-family-secondary: @font-family-raleway;
+
+@font-family-base:      @font-family-primary;
+@font-size-base:        16px;
+@line-height-base:      1.5;
+
+@font-weight-base:      400;
+@font-weight-light:     300;
+@font-weight-semi-bold: 500;
+@font-weight-bold:      700;
+
+@line-height-px:        unit(floor(@base-size * @line-height-base), px); // ~24px
+@line-height-tight:     1.25;
+@line-height-loose:     1.66;
+
+// Borders
+// ---------------------------------------------------
+// TODO: border color abound -- need to wrangle them down
+@border-color-base:     #ddd;
+@border-color-dark:     #bbb;
+
+@border-radius-base:    4px;
+@border-radius-large:   6px;
+@border-radius-small:   3px;
+
+
+// Colors
+// ---------------------------------------------------
+
+// Text and body
+@text-color:            #333;
+@text-color-muted:      #666;
+@body-bg:               @lightbluebg;
+@kerning-base:          -.021em;
+@kerning-tight:         -.042em;
+
+// Links
+@link-color:            @teal;
+@link-color-hover:      darken(@link-color, 10%);
+
+// Disabled color:
+@disabled-color:        #aaa;
+
+
+// Headings
+// ---------------------------------------------------
+
+@headings-font-family:  @font-family-secondary;
+@headings-font-weight:  @font-weight-light;
+@headings-line-height:  1.1;
+
+@font-size-h1:          (@font-size-base * 2.625);  // 42px
+@font-size-h2:          (@font-size-base * 2);      // 32px
+@font-size-h3:          (@font-size-base * 1.5);    // 24px
+@font-size-h4:          (@font-size-base * 1.125);  // 18px
+@font-size-h5:          (@font-size-base * 1);      // 16px
+@font-size-h6:          (@font-size-base * .875);   // 14px
+
+
+// Grid
+// ---------------------------------------------------
+
+@grid-columns:                   6;
+
+@grid-gutter-width:              20px;
+@grid-outer-edge-width:          30px;
+
+// TODO: Make more universal and tie into type
+// @margin-vertical-default:        (@font-size-base * @line-height-base); //~24px
+@margin-vertical-default:        20px;
+
+// breakpoints
+@site-min-width:                 320px;  // TODO: 600px????
+@bp-phone:                       480px;
+@bp-sm-tablet:                   600px;
+@bp-sm-md-tablet:                640px;
+@bp-md-tablet:                   800px;
+@bp-md-lg-tablet:                960px;
+@bp-lg-tablet:                   1024px;
+@site-max-width:                 1280px;
+
+// device-specific breakpoints
+@bp-ipad-portrait:               768px;
+
+// max-width breakpoints
+@bp-phone-max:                   (@bp-sm-tablet - 1);    // ~599px
+@bp-sm-tablet-max:               (@bp-sm-md-tablet - 1); // ~639px
+@bp-sm-md-tablet-max:            (@bp-md-tablet - 1);    // ~799px
+@bp-md-tablet-max:               (@bp-md-lg-tablet - 1); // ~959px
+@bp-md-lg-tablet-max:            (@bp-lg-tablet - 1);    // ~1023px
+@bp-lg-tablet-max:               (@site-max-width - 1);  // ~1279px
+
+
+// Animations
+// ---------------------------------------------------
+
+@trans-time-default:        500ms;
+@trans-time-fast:           350ms;
+@trans-easing-default:      cubic-bezier(.1, .7, .1, 1);
+
+
+// Shadows
+// ---------------------------------------------------
+
+@shadow-bottom:              0 4px 4px 0   rgba(0,0,0,.15);
+@shadow-bottom-small:        0 2px 2px 2px rgba(0,0,0, .15);
+@shadow-bottom-small-dark:   0 2px 2px rgba(0,0,0, .5);
+@shadow-bottom-blue:         0 2px 5px 0   rgba(165, 199, 211, 1); //#a5c7d3
+
+// ---------------------------------------------------
+// Global Components
+// ---------------------------------------------------
+
+// Navbar
+// NOTE: these are global because other styles depend on them.
+
+@zindex-navbar:         10000000; // Z-index :: So high because of advertisements
+@navbar-height:         48px;
+@navbar-height-lg:      60px;
+@navbar-top-offset:     12px;
+
+.clrfix{zoom:1;}
+.clrfix:after{content:".";display:block;height:0;width:0;line-height:0;font-size:0;clear:both;visibility:hidden;}

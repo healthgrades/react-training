@@ -1,0 +1,44 @@
+{
+  "name": "ReactTesting",
+  "version": "1.0.0",
+  "description": "Tesing demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --inline"
+  },
+  "author": "healthgrades",
+  "dependencies": {
+    "actual": "^0.2.0",
+    "autoprefixer-loader": "^2.0.0",
+    "csscomb-loader": "0.0.2",
+    "css-loader": "~0.15.1",
+    "expose-loader": "^0.7.0",
+    "extract-text-webpack-plugin": "^0.8.2",
+	"fastclick": "^1.0.6",
+	"formsy-react": "~0.14.1",
+    "file-loader": "0.8.4",
+    "html-webpack-plugin": "^1.5.2",
+    "jsx-loader": "^0.13.2",
+    "less-loader": "~2.2.0",
+    "lodash": "~3.9.3",
+    "lodash-contrib": "~241.4.14",
+    "react": "~0.13.3",
+    "react-bootstrap": "^0.23.4",
+    "react-router": "^0.13.3",
+    "react-router-bootstrap": "^0.16.0",
+    "rebound": "~0.0.13",
+    "rx": "^2.5.3",
+    "script-loader": "^0.6.1",
+    "style-loader": "~0.12.3",
+    "url-loader": "^0.5.6",
+    "verge": "^1.9.1",
+    "webpack": "^1.9.11"
+  },
+  "devDependencies": {
+    "jasmine-core": "^2.3.4",
+    "jasmine-react-helpers": "^0.2.2",
+    "react-hot-loader": "^1.2.7",
+    "webpack-dev-server": "^1.9.0"
+  }
+}

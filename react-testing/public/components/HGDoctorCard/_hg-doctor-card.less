@@ -1,0 +1,123 @@
+﻿// HG3 Content Cards
+// ---------------------------------------------------
+
+@import './../../less/_hg-variables';
+@import './../../less/_hg-mixins';
+
+.hg3-doctor-card {
+    float: left;
+    height: 350px;
+    margin: 10 auto 10 20px;
+    max-width: 400px;
+    position: relative;
+    padding-bottom: (@margin-vertical-default * 2);
+    background: #fff;
+    border-radius: @border-radius-base;
+    cursor: pointer;
+    box-shadow: #ccc 5px 5px 5px;
+    .provider-image {
+        float: left;
+        img {
+           width: 100px;
+           max-width: none;
+        }
+    }
+    .hg3-promo-image-default {
+        background: @gray-light;
+        //.rounded-top(@border-radius-base);
+        img {
+            height: auto;
+            width: auto;
+            padding: 21% 0;
+            margin: 0 auto;
+            display: block;
+        }
+    }
+    .provider-info{
+        padding: 10px;
+        float: left;
+        width: 250px;
+    }
+    .provider-name {
+        font-weight: bold;
+      font-size: 24px;
+      color: #333;
+    }
+    .provider-specialty{
+      font-style: italic;
+      font-size: 18px;
+      color: #649aa6;
+    }
+    .provider-address{
+        color: #666;
+    }
+
+    .provider-phone{
+        width: 100%;
+        color: #fff;
+        text-align: center;
+        font-size: 28px;
+        padding-top: 5px;
+    }
+    .content-area {
+        overflow: hidden;
+        padding: 15px;
+        clear: both;
+        p {
+          margin: 0;
+          font-size: (@font-size-base * .875);
+          line-height: 1.4;
+          color: @gray;
+        }
+        h4 {
+            margin-top: 0;
+            margin-bottom: (@margin-vertical-default / 4);
+            color: @text-color;
+        }
+    }
+    .hg3-card-footer {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        .size(100%, 40px);
+        background: @lightteal;
+        .rounded-bottom(@border-radius-base);
+    }
+    .card-overlay {
+        position: absolute;
+        .square(100%);
+        z-index: 300;
+        cursor: pointer;
+    }
+    .card-inner {
+        height: 300px;
+        overflow: hidden;
+        background-color: #fff;
+        .card-basic {
+            width: auto !important;
+            padding: 0;
+            > a {
+                display: block;
+                height: 175px;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                }
+            }
+            .vertically-centered {
+                padding: 0 5px;
+            }
+            .bs-shadow-img {
+                height: 40px;
+                width: 100%;
+                background: lightblue;
+                bottom: -40px;
+                position: absolute;
+            }
+            .foot {
+                width: 100%;
+                left: 0;
+            }
+        }
+    }
+}

@@ -36,20 +36,37 @@ styles.panel = {
 };
 
 var Tabs = React.createClass({
+  handleClick(){
+
+  },
   render () {
     return (
       <div className="Tabs">
-        <div className="Tab" style={styles.tab}>
-          Inactive
-        </div>
-        <div className="Tab" style={styles.activeTab}>
-          Active
-        </div>
-        <div className="TabPanels" style={styles.panel}>
-          Panel
-        </div>
+        //<div className="Tab" style={styles.tab}>
+        //   Inactive
+        // </div>
+        // <div className="Tab" style={styles.activeTab}>
+        //   Active
+        // </div>
+        // <div className="TabPanels" style={styles.panel}>
+        //   Panel
+        // </div>
+          {DATA.map(function(){
+            <Tab onClick={this.handleClick} style={styles.tab} />
+          })}
       </div>
     );
+  }
+});
+
+var Tab = React.createClass({
+  handleClick(){
+    this.props.onClick();
+  },
+  render(){
+      <div className="Tab" style={this.prop.style} onClick={this.handleClick()}>
+          Inactive
+      </div>
   }
 });
 

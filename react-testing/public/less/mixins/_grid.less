@@ -1,0 +1,127 @@
+// Grid system
+// -------------------------------------------------
+// Generate semantic grid columns with these mixins.
+
+// Centered container element
+// .make-container(@gutter: @grid-outer-edge-width, min-width: @site-min-width, @max-width: @site-max-width) {
+//   &:extend(.clearfix all);
+// }
+.make-container(@gutter: @grid-outer-edge-width) {
+  //min-width: @site-min-width;
+  max-width: @site-max-width;
+  padding-left:  @gutter;
+  padding-right: @gutter;
+  @media (min-width: @site-max-width) {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+// Creates a wrapper for a series of columns
+.make-row(@gutter: @grid-gutter-width) {
+  margin-left:  (@gutter / -2);
+  margin-right: (@gutter / -2);
+  .clearfix();
+}
+
+// Creates standard column behavior
+.make-column(@gutter: @grid-gutter-width) {
+  position: relative;
+  min-height: 1px;
+  padding-left:  (@gutter / 2);
+  padding-right: (@gutter / 2);
+}
+
+// Framework grid generation
+// -------------------------------------------------
+.make-grid-columns() {
+  // Common styles for all sizes of grid columns, widths 1-12
+  .col(@index) { // initial
+    @element: ~".hg3-column-xs-@{index}, .hg3-column-sm-@{index}, .hg3-column-md-@{index}, .hg3-column-lg-@{index}";
+    .col((@index + 1), @element);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general; "=<" isn't a typo
+    @element: ~".hg3-column-xs-@{index}, .hg3-column-sm-@{index}, .hg3-column-md-@{index}, .hg3-column-lg-@{index}";
+    .col((@index + 1), ~"@{list}, @{element}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      position: relative;
+      // Prevent columns from collapsing when empty
+      min-height: 1px;
+      // Inner gutter via padding
+      padding-left:  (@grid-gutter-width / 2);
+      padding-right: (@grid-gutter-width / 2);
+    }
+  }
+  .col(1); // kickstart it
+}
+
+.float-grid-columns(@class) {
+  .col(@index) { // initial
+    @element: ~".@{class}-@{index}";
+    .col((@index + 1), @element);
+  }
+  .col(@index, @list) when (@index =< @grid-columns) { // general
+    @element: ~".@{class}-@{index}";
+    .col((@index + 1), ~"@{list}, @{element}");
+  }
+  .col(@index, @list) when (@index > @grid-columns) { // terminal
+    @{list} {
+      float: left;
+    }
+  }
+  .col(1); // kickstart it
+}
+
+.calc-grid-column(@index, @class, @type) when (@type = width) and (@index > 0) {
+  @element: ~".@{class}-@{index}";
+  @{element} {
+    width: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index > 0) {
+  @element: ~".@{class}-push-@{index}";
+  @{element} {
+    left: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = push) and (@index = 0) {
+  @element: ~".@{class}-push-0";
+  @{element} {
+    left: auto;
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index > 0) {
+  @element: ~".@{class}-pull-@{index}";
+  @{element} {
+    right: percentage((@index / @grid-columns));
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = pull) and (@index = 0) {
+  @element: ~".@{class}-pull-0";
+  @{element} {
+    right: auto;
+  }
+}
+.calc-grid-column(@index, @class, @type) when (@type = offset) {
+  @element: ~".@{class}-offset-@{index}";
+  @{element} {
+    margin-left: percentage((@index / @grid-columns));
+  }
+}
+// Basic looping in LESS
+
+.loop-grid-columns(@index, @class, @type) when (@index >= 0) {
+  .calc-grid-column(@index, @class, @type);
+  // next iteration
+  .loop-grid-columns((@index - 1), @class, @type);
+}
+
+// Create grid for specific class
+.make-grid(@class, @columns: 4) {
+  .float-grid-columns(@class);
+  .loop-grid-columns(@columns, @class, width);
+  //.loop-grid-columns(@columns, @class, pull);
+  //.loop-grid-columns(@columns, @class, push);
+  .loop-grid-columns(@columns, @class, offset);
+}

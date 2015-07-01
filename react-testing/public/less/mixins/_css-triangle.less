@@ -1,0 +1,26 @@
+// CSS triangle
+// creates small triangle block like a caret
+// TODO: NEED TO TEST
+.css-triangle(@size: 4px) {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  color: inherit;
+  border-top:   @size solid;
+  border-right: @size solid transparent;
+  border-left:  @size solid transparent;
+  &.up {
+		border-top:      @size transparent;
+		border-bottom:   @size solid;
+  }
+  &.right {
+    border-top:      @size transparent;
+    border-left:   @size solid;
+  }
+  &.left {
+    border-top:      @size transparent;
+    border-right:   @size solid;
+  }
+}

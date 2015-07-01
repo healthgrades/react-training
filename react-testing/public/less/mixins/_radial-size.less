@@ -1,0 +1,11 @@
+.hg3-radial-size (@radialBaseSize: 160px; @radialFontSize: (@font-size-base * 4); @radialTextOffset: @radial-text-offset-md) {
+    .square(@radialBaseSize);
+    .radial-percent {
+        font-size: (@font-size-base * @radialFontSize);
+        top: @radialTextOffset;
+    }
+    .radial-label {
+        font-size: ((@font-size-base * @radialFontSize) / 4);
+        bottom: @radialTextOffset;
+    }
+}

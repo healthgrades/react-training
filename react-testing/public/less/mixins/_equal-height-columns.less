@@ -1,0 +1,9 @@
+// Equal height columns hack
+// -------------------------------------------------
+.equal-height-columns(@column-element: hg3-grid-column) {
+  overflow: hidden;
+  .@{column-element}{
+    margin-bottom: -99999px;
+    padding-bottom: 99999px;
+  }
+}
