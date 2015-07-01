@@ -27,14 +27,14 @@ var App = React.createClass({
           })
         }
 
-               
+        { doctors.map(function(doctor){ return (<HGDoctorCard doctor={doctor} onClick={app.handleDoctorClick.bind(null, doctor.phone)}/>) }) }
+ 
       </div>
     )
   }
 });
 
-// { doctors.map(function(doctor){ return (<HGDoctorCard doctor={doctor} onClick={app.handleDoctorClick.bind(null, doctor.phone)}/>) }) }
-
+   
 
 React.render(<App message="React Unit Testing Demo!"/>, document.getElementById('container'));
 
